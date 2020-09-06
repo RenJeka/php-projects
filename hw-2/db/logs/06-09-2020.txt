@@ -1,0 +1,19 @@
+06-Sep-2020;::1;/hw/hw-2/article.php?id=2;http://localhost/hw/hw-2/index.php;!warning!
+13:57:44;::1;/hw/hw-2/index.php;http://localhost/hw/hw-2/article.php?id=2;!warning!
+13:57:45;::1;/hw/hw-2/index.php;http://localhost/hw/hw-2/article.php?id=2;!warning!
+13:59:56;::1;/hw/hw-2/index.php;http://localhost/hw/hw-2/article.php?id=2;!warning!
+14:01:17;::1;/hw/hw-2/index.php;http://localhost/hw/hw-2/article.php?id=2;GET;!warning!
+14:01:18;::1;/hw/hw-2/article.php?id=2;http://localhost/hw/hw-2/index.php;GET;!warning!
+14:01:21;::1;/hw/hw-2/article.php?id=2;http://localhost/hw/hw-2/index.php;GET;!warning!
+14:01:25;::1;/hw/hw-2/;direct link;GET;!warning!
+14:03:37;::1;/hw/hw-2/;direct link;GET;!warning!
+14:03:39;::1;/hw/hw-2/;direct link;GET;!warning!
+14:03:41;::1;/hw/hw-2/add.php;http://localhost/hw/hw-2/;GET;!warning!
+14:03:43;::1;/hw/hw-2/index.php;http://localhost/hw/hw-2/add.php;GET;!warning!
+14:03:43;::1;/hw/hw-2/article.php?id=2;http://localhost/hw/hw-2/index.php;GET;!warning!
+14:21:48;::1;/hw/hw-2/;direct link;GET;!warning!
+14:21:50;::1;/hw/hw-2/article.php?id=3;http://localhost/hw/hw-2/;GET;!warning!
+14:21:51;::1;/hw/hw-2/index.php;http://localhost/hw/hw-2/article.php?id=3;GET;!warning!
+14:21:52;::1;/hw/hw-2/article.php?id=4;http://localhost/hw/hw-2/index.php;GET;!warning!
+14:21:53;::1;/hw/hw-2/index.php;http://localhost/hw/hw-2/article.php?id=4;GET;!warning!
+14:21:56;::1;/hw/hw-2/;direct link;GET;!warning!
