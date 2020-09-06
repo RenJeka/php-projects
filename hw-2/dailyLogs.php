@@ -12,6 +12,14 @@ if (checkLogDay($_GET['date'])){
 }
 ?>
 <style>
+    table, td{
+        border: 1px solid #747974;
+        padding: 5px 0;
+        border-collapse: collapse;
+    }
+    td{
+        padding: 5px;
+    }
     .danger{
         color: red;
     }
