@@ -26,7 +26,10 @@ function getAllLogs(): array
 
 function getDailyLogs(string $day): array
 {
-    return file(LOGS_PATH."/$day.txt");
+    $rows =  file(LOGS_PATH."/$day.txt");
+    return array_map(function ($row) {
+         return explode(";", rtrim($row));
+    }, $rows);
 }
 
 /**
@@ -81,11 +84,9 @@ function checkRequestURI($requestURI)
  * @param $logString string log string
  * @return bool TRUE, if in the log string has warning flag, otherwise FALSE
  */
-function checkForBadLog(string $logString): bool
+function checkForBadLog(array $logString): bool
 {
-    $logString = rtrim($logString);
-    $parts = explode(";", $logString);
-    if ($parts[count($parts) - 1] === "!warning!") {
+    if (array_search('!warning!', $logString) !== false) {
         return true;
     } else {
         return false;
