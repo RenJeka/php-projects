@@ -41,13 +41,13 @@ function createLog(): string
     $currentTime = date('H:i:s');
     $userIP = $_SERVER['REMOTE_ADDR'];
     $refererLink = $_SERVER['HTTP_REFERER'] ?? 'direct link';
-    $requestURI = $_SERVER['REQUEST_URI'];
+    $requestURI = urldecode($_SERVER['REQUEST_URI']);
     $requestMethod = $_SERVER['REQUEST_METHOD'];
 
-    if (checkRequestURI($requestURI)) {
-        return "$currentTime;$userIP;$requestURI;$refererLink;$requestMethod;!warning!\n";
-    } else {
+    if (checkValidityRequestURI($requestURI)) {
         return "$currentTime;$userIP;$requestURI;$refererLink;$requestMethod\n";
+    } else {
+        return "$currentTime;$userIP;$requestURI;$refererLink;$requestMethod;!warning!\n";
     }
 
 }
@@ -74,10 +74,14 @@ function checkLogFileName(string $fileName): bool
     return !!preg_match(REGEXP_FILENAME, $fileName);
 }
 
-function checkRequestURI($requestURI)
+/**
+ * check for valid URI (that has been request from user)
+ * @param $requestURI URI
+ * @return bool TRUE, if URI is valid, otherwise — FALSE
+ */
+function checkValidityRequestURI(string $requestURI): bool
 {
-    $badStrings = true; // Проверка  регулярным выражением на подозрительные элементы строки
-    return $badStrings;
+    return !!preg_match('/^[aA-zZ0-9\-_\/\?\.=&]*$/', $requestURI);
 }
 
 /**
