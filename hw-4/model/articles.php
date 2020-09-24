@@ -17,7 +17,24 @@ function getArticleByID(int $id){
     return $preparedQuery->fetch();
 }
 
-function getCategoryByID(int $id){
+function updateArticle(array $inputMaskParameters): bool{
+    $sql = "UPDATE articles
+            SET id_category=:id_category,
+                title=:title,
+                text=:text
+            WHERE id_article=:id_article";
+    dbPrepareQuery($sql, $inputMaskParameters);
+    return true;
+}
+
+function getAllCategories(): array {
+    $sql = "SELECT * FROM caterories ORDER BY id_category";
+    $preparedQuery = dbPrepareQuery($sql);
+    return $preparedQuery->fetchAll();
+
+}
+
+function getCategoryByID(int $id): array{
     $sql = "SELECT * FROM caterories WHERE id_category = :id";
     $preparedQuery = dbPrepareQuery($sql, ['id' => (int)$id]);
     return $preparedQuery->fetch();
@@ -29,7 +46,7 @@ function getCategoryByID(int $id){
  * @return bool true, if sql-query has completed
  */
 function addNewArticle(array $inputMaskParameters): bool{
-    $sql = "INSERT articles (title, text, id_category) VALUES (:title, :text, 1)";
+    $sql = "INSERT articles (title, text, id_category) VALUES (:title, :text, :id_category)";
     dbPrepareQuery($sql, $inputMaskParameters);
     return true;
 }

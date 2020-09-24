@@ -49,8 +49,8 @@ $articleCategory = getCategoryByID($article['id_category']);
             </h1>
             <div><?=$article['text']?></div>
             <hr>
-            <p><a href="edit.php?id=<?=$id?>">Edit</a></p>
-            <p><a href="delete.php?id=<?=$id?>">Remove</a></p>
+            <p><a href="edit.php?id=<?=$article['id_article']?>">Edit</a></p>
+            <p><a href="delete.php?id=<?=$article['id_article']?>">Remove</a></p>
 
         </div>
 <!--    --><?//else: ?>
