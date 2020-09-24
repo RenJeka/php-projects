@@ -2,6 +2,7 @@
 include_once "model/articles.php";
 $db = getDBInstance();
 $article = getArticleByID($_GET['id']);
+$articleCategory = getCategoryByID($article['id_category']);
 ?>
 
 <!DOCTYPE html>
@@ -21,9 +22,15 @@ $article = getArticleByID($_GET['id']);
             font-size: 20px;
             margin: 10px 0;
         }
-        .title-article-date{
-            font-size: 16px;
+        .title-article__date{
+            font-size: 18px;
             color: gray;
+        }
+
+        .title-article__category{
+            font-style: italic;
+            font-size: 16px;
+            color: #4e4e4e;
         }
     </style>
 </head>
@@ -33,8 +40,11 @@ $article = getArticleByID($_GET['id']);
         <div class="article">
             <h1>
                 <?=$article['title']?>
-                <span class="title-article-date">
+                <span class="title-article__date">
                     ( <?= substr($article['addDate'],0,10)?> )
+                </span>
+                <span class="title-article__category">
+                    <?=$articleCategory['categoryName']?>
                 </span>
             </h1>
             <div><?=$article['text']?></div>
