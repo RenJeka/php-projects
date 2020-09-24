@@ -11,6 +11,12 @@ function getAllArticles(): array{
     return $preparedQuery->fetchAll();
 }
 
+function getArticleByID(int $id){
+    $sql = "SELECT * FROM articles WHERE id_article = :id";
+    $preparedQuery = dbPrepareQuery($sql, ['id' => (int)$id]);
+    return $preparedQuery->fetch();
+}
+
 /**
  * Input new article to DataBase through input mask parameters to sql query
  * @param array $inputMaskParameters parameters, that will inject to mask-place in SQL query
