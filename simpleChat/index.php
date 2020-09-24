@@ -1,12 +1,8 @@
 <?php
 
-include_once "model/db.php";
-
+include_once "model/messages.php";
 $db = dbInstance();
-
-$sql = "SELECT * from messages order by dt_add desc ";
-$query = dbPrepareQuery($sql);
-$messages = $query->fetchAll();
+$messages = messagesAll();
 
 ?>
 

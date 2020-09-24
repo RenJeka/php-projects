@@ -1,6 +1,6 @@
 <?php
 
-include_once "model/db.php";
+include_once "model/messages.php";
 
 $fields = [
     'name' => '',
@@ -15,9 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($fields['name'] === '' || $fields['text'] === '') {
         $err = 'Заполните все поля!';
     } else {
-        $sql = "INSERT messages(name, text) VALUES (:name, :text)";
-
-        dbPrepareQuery($sql, $fields);
+        messagesAdd($fields);
         header('Location:index.php');
         exit();
     }
