@@ -27,6 +27,12 @@ function updateArticle(array $inputMaskParameters): bool{
     return true;
 }
 
+function deleteArticle(int $id_article): bool{
+    $sql = "DELETE FROM articles WHERE id_article=:id_article";
+    dbPrepareQuery($sql, ['id_article' => (int)$id_article]);
+    return true;
+}
+
 function getAllCategories(): array {
     $sql = "SELECT * FROM caterories ORDER BY id_category";
     $preparedQuery = dbPrepareQuery($sql);
