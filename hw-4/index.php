@@ -1,4 +1,8 @@
 <?php
+
+include_once "model/articles.php";
+$db = getDBInstance();
+$articles = getAllArticles();
 ?>
 
 <!DOCTYPE html>
