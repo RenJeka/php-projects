@@ -14,7 +14,7 @@ function getAllArticles(): array{
 /**
  * return article (array of article's data from DB)
  * experiment for strict type
- * @param int $id id of requested article
+ * @param string $id id of requested article
  * @return array|null
  */
 function getArticleByID(string $id): ?array {
@@ -51,7 +51,6 @@ function deleteArticle(int $id_article): bool{
     dbPrepareQuery($sql, ['id_article' => (int)$id_article]);
     return true;
 }
-
 
 function checkID(string $id): bool{
     $pattern = "/^[1-9]+\d*/";
