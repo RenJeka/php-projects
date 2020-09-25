@@ -6,11 +6,12 @@
  * There is PDO is singleton
  * @return PDO PDO instance
  */
-function getDBInstance(): PDO{
+function getDBInstance(): PDO
+{
     // Create singleton DB - connection
     static $db;
     if ($db === null) {
-        $db = new PDO('mysql:host=localhost;dbname=hw4_blog', 'root','', [
+        $db = new PDO('mysql:host=localhost;dbname=hw4_blog', 'root', '', [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);
         $db->exec('SET NAMES UTF8');
@@ -24,10 +25,11 @@ function getDBInstance(): PDO{
  * @param array $inputParameters input parameters to inject into query mask-places
  * @return PDOStatement prepared sqlQuery
  */
-function dbPrepareQuery(string $sql, array $inputParameters=[]): PDOStatement{
+function dbPrepareQuery(string $sql, array $inputParameters = []): PDOStatement
+{
     $dbInstance = getDBInstance();
     $prepareSqlQuery = $dbInstance->prepare($sql);
-    $prepareSqlQuery-> execute($inputParameters);
+    $prepareSqlQuery->execute($inputParameters);
     dbCheckErrors($prepareSqlQuery);
     return $prepareSqlQuery;
 }
@@ -37,7 +39,8 @@ function dbPrepareQuery(string $sql, array $inputParameters=[]): PDOStatement{
  * @param PDOStatement $preparedSqlQuery prepared query to find errors
  * @return bool true if no errors, otherwise print error and terminate the script
  */
-function dbCheckErrors(PDOStatement $preparedSqlQuery): bool{
+function dbCheckErrors(PDOStatement $preparedSqlQuery): bool
+{
     // get all errors
     $errInfo = $preparedSqlQuery->errorInfo();
 
@@ -50,4 +53,10 @@ function dbCheckErrors(PDOStatement $preparedSqlQuery): bool{
     }
     // in no errors — return true
     return true;
+}
+
+function getLastInsertedID(): string
+{
+    $dbInstance = getDBInstance();
+    return $dbInstance->lastInsertId();
 }

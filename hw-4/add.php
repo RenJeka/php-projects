@@ -1,4 +1,5 @@
 <?php
+include_once "model/db.php";
 include_once "model/articles.php";
 
 $inputParameters = [
@@ -13,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $inputParameters['title'] = trim($_POST['title']);
     $inputParameters['text'] = trim($_POST['text']);
 
-    if ( array_key_exists('id_category', $_POST)){
+    if (array_key_exists('id_category', $_POST)) {
         $inputParameters['id_category'] = trim($_POST['id_category']);
     }
 
@@ -21,7 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $err = 'Заполните все поля!';
     } else {
         addNewArticle($inputParameters);
-        header('Location:index.php');
+        $id = getLastInsertedID();
+        header("Location: article.php?id=$id");
         exit();
     }
 }
@@ -43,10 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="form">
 
     <form method="post">
-        <p>Заголовок статьи: <input type="text" name="title" ></p>
+        <p>Заголовок статьи: <input type="text" name="title"></p>
         <p> Выберите категорию статьи:
-            <select  name="id_category">
-                <option value="" hidden >Выберите значение:</option>
+            <select name="id_category">
+                <option value="" hidden>Выберите значение:</option>
                 <option value="1">Спорт</option>
                 <option value="2">Автомобили</option>
                 <option value="3">Быт</option>

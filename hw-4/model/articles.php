@@ -11,10 +11,29 @@ function getAllArticles(): array{
     return $preparedQuery->fetchAll();
 }
 
-function getArticleByID(int $id){
+/**
+ * return article (array of article's data from DB)
+ * experiment for strict type
+ * @param int $id id of requested article
+ * @return array|null
+ */
+function getArticleByID(string $id): ?array {
+
     $sql = "SELECT * FROM articles WHERE id_article = :id";
     $preparedQuery = dbPrepareQuery($sql, ['id' => (int)$id]);
-    return $preparedQuery->fetch();
+    $article = $preparedQuery->fetch();
+    return is_array($article) ? $article : null;
+}
+
+/**
+ * Input new article to DataBase through input mask parameters to sql query
+ * @param array $inputMaskParameters parameters, that will inject to mask-place in SQL query
+ * @return bool true, if sql-query has completed
+ */
+function addNewArticle(array $inputMaskParameters): bool{
+    $sql = "INSERT articles (title, text, id_category) VALUES (:title, :text, :id_category)";
+    dbPrepareQuery($sql, $inputMaskParameters);
+    return true;
 }
 
 function updateArticle(array $inputMaskParameters): bool{
@@ -46,13 +65,8 @@ function getCategoryByID(int $id): array{
     return $preparedQuery->fetch();
 }
 
-/**
- * Input new article to DataBase through input mask parameters to sql query
- * @param array $inputMaskParameters parameters, that will inject to mask-place in SQL query
- * @return bool true, if sql-query has completed
- */
-function addNewArticle(array $inputMaskParameters): bool{
-    $sql = "INSERT articles (title, text, id_category) VALUES (:title, :text, :id_category)";
-    dbPrepareQuery($sql, $inputMaskParameters);
-    return true;
+ // TODO: Need to implement a validity check of ID articles(from User)
+function checkID(string $id){
+    $pattern = "/^[1-9]+\d*/";
 }
+
