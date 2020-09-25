@@ -31,7 +31,7 @@ function getArticleByID(string $id): ?array {
  * @return bool true, if sql-query has completed
  */
 function addNewArticle(array $inputMaskParameters): bool{
-    $sql = "INSERT articles (title, text, id_category) VALUES (:title, :text, :id_category)";
+    $sql = "INSERT INTO articles (title, text, id_category) VALUES (:title, :text, :id_category)";
     dbPrepareQuery($sql, $inputMaskParameters);
     return true;
 }

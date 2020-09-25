@@ -8,6 +8,7 @@ $inputParameters = [
     'text' => ''
 ];
 $err = '';
+$categories = getAllCategories();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -49,10 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p> Выберите категорию статьи:
             <select name="id_category">
                 <option value="" hidden>Выберите значение:</option>
-                <option value="1">Спорт</option>
-                <option value="2">Автомобили</option>
-                <option value="3">Быт</option>
-                <option value="4">Искусство</option>
+                <? foreach ($categories as $category): ?>
+                    <option
+                            value=<?= $category['id_category'] ?>
+                            <?=$category['id_category'] == $inputParameters['id_category'] ? 'selected' : ''?>
+                    > <?= $category['categoryName'] ?> </option>
+                <? endforeach; ?>
             </select>
         </p>
         <p>Текст статьи:
