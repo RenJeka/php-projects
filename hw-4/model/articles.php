@@ -52,21 +52,9 @@ function deleteArticle(int $id_article): bool{
     return true;
 }
 
-function getAllCategories(): array {
-    $sql = "SELECT * FROM caterories ORDER BY id_category";
-    $preparedQuery = dbPrepareQuery($sql);
-    return $preparedQuery->fetchAll();
 
-}
-
-function getCategoryByID(int $id): array{
-    $sql = "SELECT * FROM caterories WHERE id_category = :id";
-    $preparedQuery = dbPrepareQuery($sql, ['id' => (int)$id]);
-    return $preparedQuery->fetch();
-}
-
- // TODO: Need to implement a validity check of ID articles(from User)
-function checkID(string $id){
+function checkID(string $id): bool{
     $pattern = "/^[1-9]+\d*/";
+    return (bool)preg_match($pattern, $id);
 }
 

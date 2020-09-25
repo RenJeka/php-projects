@@ -1,8 +1,9 @@
 <?php
 include_once "model/articles.php";
+include_once "model/categories.php";
 
 $inputParameters = [
-    'id_article' => $_GET['id'],
+    'id_article' => '',
     'title' => '',
     'id_category' => '',
     'text' => ''
@@ -17,6 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $inputParameters['title'] = trim($_POST['title']);
     $inputParameters['text'] = trim($_POST['text']);
     $inputParameters['id_category'] = trim($_POST['id_category']);
+    if (checkID($_GET['id'])) {
+        $inputParameters['id_article'] = $_GET['id'];
+    }
 
     if (array_key_exists('id_category', $_POST)) {
         $inputParameters['id_category'] = trim($_POST['id_category']);
