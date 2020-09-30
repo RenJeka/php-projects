@@ -11,8 +11,9 @@ $inputParameters = [
 $err = '';
 $articleData = [];
 $categories = getAllCategories();
-$isArticleExist = '';
+$isArticleExist = false;
 
+// there is 2 verification — "checkID()" AND returned value of "getArticleByID()"
 if (checkID($_GET['id'])) {
     $articleData = getArticleByID($_GET['id']);
     // verification for non-existent id
