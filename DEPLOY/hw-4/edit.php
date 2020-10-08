@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isArticleExist === true) {
 <? if (!$isArticleExist) : ?>
     <div>Статья не найдена!</div>
 <? else: ?>
-    <div class="form" class="container ">
+    <div class="container ">
 
         <div class="row px-3">
             <div class="col">
