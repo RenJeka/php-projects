@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isArticleExist === true) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добавление статьи</title>
+    <title>Редактирование статьи</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
     <style>
          * {
@@ -60,55 +60,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isArticleExist === true) {
 
         <div class="row px-3">
             <div class="col">
-            <form method="post">
-            <div class="mb-3">
-                <label for="articleTitle" class="form-label">Заголовок статьи:</label>
-                    <input 
-                        type="text" 
-                        name="title"
-                        value=<?= $articleData['title'] ?>
-                        class="form-control" 
-                        id="articleTitle" 
-                        aria-describedby="articleTitleHelp"
-                    >
-                <div id="articleTitleHelp" class="form-text">Введите сюда название своей статьи</div>
-            </div>
+                <div class="display-6 text-center">
+                    Редактирование статьи
+                </div>
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="articleTitle" class="form-label">Заголовок статьи:</label>
+                            <input 
+                                type="text" 
+                                name="title"
+                                value=<?= $articleData['title'] ?>
+                                class="form-control" 
+                                id="articleTitle" 
+                                aria-describedby="articleTitleHelp"
+                            >
+                        <div id="articleTitleHelp" class="form-text">Введите сюда название своей статьи</div>
+                    </div>
 
-            <div class="mb-3">
-                <label for="articleCategory" class="form-label">Выберите категорию статьи:</label>
-                <select name="id_category" class="form-select">
-                    <? foreach ($categories as $category): ?>
-                    <option 
-                        value=<?= $category['id_category'] ?> <? if ($category['id_category']===$articleData['id_category']): ?>
-                        selected
-                        <? endif; ?>
-                        > <?= $category['categoryName'] ?>
-                    </option>
-                    <? endforeach; ?>
-                </select>
-            </div>
-       
-            <div class="mb-3">
-                <label for="articleText" class="form-label">Введите текст статьи: </label>
-                <textarea 
-                    name="text" 
-                    class="form-control" 
-                    id="articleText" 
-                    rows="10" 
-                >
-                    <?= $articleData['text'] ?>
-                </textarea>
-            </div>               
+                    <div class="mb-3">
+                        <label for="articleCategory" class="form-label">Выберите категорию статьи:</label>
+                        <select name="id_category" class="form-select">
+                            <? foreach ($categories as $category): ?>
+                            <option 
+                                value=<?= $category['id_category'] ?> <? if ($category['id_category']===$articleData['id_category']): ?>
+                                selected
+                                <? endif; ?>
+                                > <?= $category['categoryName'] ?>
+                            </option>
+                            <? endforeach; ?>
+                        </select>
+                    </div>
+            
+                    <div class="mb-3">
+                        <label for="articleText" class="form-label">Введите текст статьи: </label>
+                        <textarea 
+                            name="text" 
+                            class="form-control" 
+                            id="articleText" 
+                            rows="10" 
+                        >
+                            <?= $articleData['text'] ?>
+                        </textarea>
+                    </div>               
 
-            <p>
-                <button 
-                    type="submit" 
-                    class="btn btn-success btn-lg btn-block"
-                >Изменить статью</button>
-            </p>
-            <p><?= $err ?></p>
-        </form>
-        <a href="index.php" class="btn btn-primary btn-sm">На главную</a>
+                    <div class="mb-3">
+                        <button 
+                            type="submit" 
+                            class="btn btn-success btn-lg btn-block"
+                        >Изменить статью</button>
+                    </div>
+                    <p><?= $err ?></p>
+                </form>
+                <a href="index.php" class="btn btn-primary btn-sm">На главную</a>
             </div>
         </div>
     </div>
