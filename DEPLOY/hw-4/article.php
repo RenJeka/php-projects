@@ -18,19 +18,13 @@ if ($isArticleExist) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Статья — <?= $article['title'] ?> </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+
     <style>
         * {
-            font-size: 22px;
+            font-size: 18px;
         }
 
-        h1 {
-            font-size: 32px;
-        }
-
-        h4 {
-            font-size: 20px;
-            margin: 10px 0;
-        }
 
         .title-article__date {
             font-size: 18px;
@@ -42,34 +36,56 @@ if ($isArticleExist) {
             font-size: 16px;
             color: #4e4e4e;
         }
+
+        @media screen and (max-width: 450px) {
+            .btn-edit{
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
-<div class="content">
-    <? if ($isArticleExist): ?>
-        <div class="article">
-            <h1>
-                <?= $article['title'] ?>
-                <span class="title-article__date">
-                    ( <?= substr($article['addDate'], 0, 10) ?> )
-                </span>
-                <span class="title-article__category">
-                    <?= $articleCategory['categoryName'] ?>
-                </span>
-            </h1>
-            <div><?= $article['text'] ?></div>
-            <hr>
-            <p><a href="edit.php?id=<?= $article['id_article'] ?>">Edit</a></p>
-            <p><a href="delete.php?id=<?= $article['id_article'] ?>">Remove</a></p>
+<div class="container">
+    <div class="row px-3">
+        <? if ($isArticleExist): ?>
+            <div class="article">
+                <h1 class="display-4 text-center">
+                    <?= $article['title'] ?>
+                    <span class="title-article__date">
+                        ( <?= substr($article['addDate'], 0, 10) ?> )
+                    </span>
+                    <span class="title-article__category">
+                        <?= $articleCategory['categoryName'] ?>
+                    </span>
+                </h1>
+                <div>
+                    <pre class="pl-2">
+                        <?= $article['text'] ?>
+                    </pre>
+                </div>
+                <hr>
 
-        </div>
-    <? else: ?>
-        <div class="e404">
-            <h1>Страница не найдена!</h1>
-        </div>
-    <? endif; ?>
+                <div class="my-2">
+                    <a 
+                        href="edit.php?id=<?= $article['id_article'] ?>" 
+                        class="btn-edit btn btn-outline-secondary mr-4"
+                    >Редактировать статью</a>
+                    <a 
+                        href="delete.php?id=<?= $article['id_article'] ?>" 
+                        class="btn btn-danger btn-sm"
+                    >Удалить статью</a>
+                </div>
+            </div>
+        <? else: ?>
+            <div class="e404">
+                <h1>Страница не найдена!</h1>
+            </div>
+        <? endif; ?>
+    
+    <div class="mt-3">
+        <a href="index.php" class="btn btn-primary btn-sm">На главную</a>
+    </div>
+    </div>
 </div>
-<hr>
-<a href="index.php">Move to main page</a>
 </body>
 </html>
