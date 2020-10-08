@@ -13,7 +13,7 @@ if ($isArticleExist) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,7 +59,7 @@ if ($isArticleExist) {
                     </span>
                 </h1>
                 <div>
-                    <pre class="pl-2">
+                    <pre class="p-2 border border-2 border-secondary rounded">
                         <?= $article['text'] ?>
                     </pre>
                 </div>
