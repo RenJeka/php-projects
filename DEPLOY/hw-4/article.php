@@ -9,7 +9,6 @@ $isArticleExist = $article !== null;
 if ($isArticleExist) {
     $articleCategory = getCategoryByID($article['id_category']);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +36,14 @@ if ($isArticleExist) {
             color: #4e4e4e;
         }
 
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
         @media screen and (max-width: 450px) {
             .btn-edit{
                 margin-bottom: 20px;
@@ -61,13 +68,14 @@ if ($isArticleExist) {
                         <?= $articleCategory['categoryName'] ?>
                     </span>
                 </h1>
-
-                <img class="img-fluid my-3 mx-auto d-block" src="<?=$article['imageUrl']?>">
+                <? if ($article['imageUrl']): ?>
+                    <img class="img-fluid my-3 mx-auto d-block" src="<?=$article['imageUrl']?>">
+                <? else: ?>
+                    <p class="text-muted">Добавьте  изображение для статьи</p>
+                <?endif;?>
 
                 <div>
-                    <pre class="p-2 border border-2 border-secondary rounded">
-                        <?= $article['text'] ?>
-                    </pre>
+                    <pre class="p-2 border border-2 border-secondary rounded"><?= $article['text'] ?></pre>
                 </div>
                 <hr>
 
