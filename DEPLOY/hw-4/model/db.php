@@ -11,7 +11,7 @@ function getDBInstance(): PDO
     // Create singleton DB - connection
     static $db;
     if ($db === null) {
-        $db = new PDO('mysql:host=localhost;dbname=hw4_blog', 'root', '', [
+        $db = new PDO('mysql:host=localhost;dbname=i972057g_tatiana_home', 'root', '', [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);
         $db->exec('SET NAMES UTF8');

@@ -47,6 +47,9 @@ if ($isArticleExist) {
 <body>
 <div class="container">
     <div class="row px-3">
+        <div class="mt-3">
+            <a href="index.php" class="btn btn-primary btn-sm">На главную</a>
+        </div>
         <? if ($isArticleExist): ?>
             <div class="article">
                 <h1 class="display-4 text-center">
@@ -58,6 +61,9 @@ if ($isArticleExist) {
                         <?= $articleCategory['categoryName'] ?>
                     </span>
                 </h1>
+
+                <img class="img-fluid my-3 mx-auto d-block" src="<?=$article['imageUrl']?>">
+
                 <div>
                     <pre class="p-2 border border-2 border-secondary rounded">
                         <?= $article['text'] ?>
@@ -82,9 +88,7 @@ if ($isArticleExist) {
             </div>
         <? endif; ?>
     
-    <div class="mt-3">
-        <a href="index.php" class="btn btn-primary btn-sm">На главную</a>
-    </div>
+
     </div>
 </div>
 </body>

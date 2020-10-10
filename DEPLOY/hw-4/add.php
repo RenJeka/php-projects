@@ -13,8 +13,10 @@ $categories = getAllCategories();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+
     $inputParameters['title'] = trim($_POST['title']);
     $inputParameters['text'] = trim($_POST['text']);
+    $inputParameters['imageUrl'] = trim($_POST['imageUrl']);
 
     if (array_key_exists('id_category', $_POST)) {
         $inputParameters['id_category'] = trim($_POST['id_category']);
@@ -96,11 +98,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             class="form-control" 
                             id="articleText" 
                             rows="10" 
+                        > </textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="articleImageUrl" class="form-label">Ссылка на изображение</label>
+                        <input
+                            type="text"
+                            name="imageUrl"
+                            class="form-control"
+                            id="articleImageUrl"
+                            aria-describedby="articleImgUrlHelp"
                         >
-                            <?= $articleData['text'] ?>
-                        </textarea>
-                    </div>  
-                    
+                        <div id="articleImgUrlHelp" class="form-text">Просто правой кн. мыши на любой картинки в
+                            интернете → и "Копировать URL"</div>
+                    </div>
 
 					<div class="mb-3">
 						<button type="submit" class="btn btn-success btn-lg btn-block">Добавить статью</button>

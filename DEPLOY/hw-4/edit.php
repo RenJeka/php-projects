@@ -13,6 +13,7 @@ $articleData = [];
 $categories = getAllCategories();
 $isArticleExist = false;
 
+
 // there is 2 verification — "checkID()" AND returned value of "getArticleByID()"
 if (checkID($_GET['id'])) {
     $articleData = getArticleByID($_GET['id']);
@@ -101,7 +102,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isArticleExist === true) {
                         >
                             <?= $articleData['text'] ?>
                         </textarea>
-                    </div>               
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="articleImageUrl" class="form-label">Ссылка на изображение</label>
+                        <input
+                                type="text"
+                                name="imageUrl"
+                                value="<?= $articleData['imageUrl']?>"
+                                class="form-control"
+                                id="articleImageUrl"
+                                aria-describedby="articleImgUrlHelp"
+                        >
+                        <div id="articleImgUrlHelp" class="form-text">Просто правой кн. мыши на любой картинки в
+                            интернете → и "Копировать URL"</div>
+                    </div>
 
                     <div class="mb-3">
                         <button 

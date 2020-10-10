@@ -6,7 +6,7 @@ include_once "model/db.php";
  * @return array
  */
 function getAllArticles(): array{
-    $sql = "SELECT * FROM articles ORDER BY addDate DESC ";
+    $sql = "SELECT * FROM articles ORDER BY editDate DESC";
     $preparedQuery = dbPrepareQuery($sql);
     return $preparedQuery->fetchAll();
 }
@@ -31,7 +31,7 @@ function getArticleByID(string $id): ?array {
  * @return bool true, if sql-query has completed
  */
 function addNewArticle(array $inputMaskParameters): bool{
-    $sql = "INSERT INTO articles (title, text, id_category) VALUES (:title, :text, :id_category)";
+    $sql = "INSERT INTO articles (title, text, id_category, imageUrl) VALUES (:title, :text, :id_category, :imageUrl)";
     dbPrepareQuery($sql, $inputMaskParameters);
     return true;
 }

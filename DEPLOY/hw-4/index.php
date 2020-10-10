@@ -1,9 +1,7 @@
 <?php
 
 include_once "model/articles.php";
-$db = getDBInstance();
 $articles = getAllArticles();
-
 ?>
 
 <!DOCTYPE html>
@@ -21,19 +19,22 @@ $articles = getAllArticles();
 		font-size: 18px;
 	}
 
-	/* h1 {
-		font-size: 32px;
-	}
-
-	h4 {
-		font-size: 20px;
-		margin: 10px 0;
-	} */
-
 	.title-article-date {
 		font-size: 16px;
 		color: gray;
 	}
+    .image-block{
+        width: 150px;
+        height: 150px;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    /*.image-block__img{*/
+    /*    width: 100%;*/
+    /*    height: 100%;*/
+    /*    object-fit: contain;*/
+    /*}*/
 	</style>
 </head>
 
@@ -47,6 +48,13 @@ $articles = getAllArticles();
 			<div class="my-4">
 				<? foreach ($articles as $article): ?>
 				<div class="my-3 p-3 d-flex position-relative border border-2 border-secondary rounded">
+                    <div class="image-block" style="background-image: url('<?=$article['imageUrl']?>')">
+<!--                        <img-->
+<!--                            class="image-block__img"-->
+<!--                            src="--><?//=$article['imageUrl']?><!--"-->
+<!--                            alt="Изображение отсутствует"-->
+<!--                        >-->
+                    </div>
 					<div>
                         <h6 class="mt-0"><?= $article['title'] ?>
                             <span class="title-article-date">( <?= substr($article['addDate'],
