@@ -40,7 +40,8 @@ function updateArticle(array $inputMaskParameters): bool{
     $sql = "UPDATE articles
             SET id_category=:id_category,
                 title=:title,
-                text=:text
+                text=:text,
+                imageUrl=:imageUrl
             WHERE id_article=:id_article";
     dbPrepareQuery($sql, $inputMaskParameters);
     return true;

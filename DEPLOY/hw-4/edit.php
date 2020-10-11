@@ -24,6 +24,7 @@ if (checkID($_GET['id'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isArticleExist === true) {
     $inputParameters['title'] = trim($_POST['title']);
     $inputParameters['text'] = trim($_POST['text']);
+    $inputParameters['imageUrl'] = trim($_POST['imageUrl']);
     $inputParameters['id_article'] = $_GET['id'];
 
     if (array_key_exists('id_category', $_POST)) {
@@ -50,7 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isArticleExist === true) {
     <style>
          * {
             font-size: 18px;
-        } 
+        }
+         .icon-home{
+             top: -2px;
+             left: 0;
+             position: relative;
+             display: inline-block;
+         }
     </style>
 </head>
 <body>
@@ -61,6 +68,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isArticleExist === true) {
 
         <div class="row px-3">
             <div class="col">
+
+                <div class="mt-3">
+                    <a href="index.php" class="btn btn-primary btn-sm">
+                <span class="background-color-warning">
+                    <svg
+                            width="1em"
+                            height="1em"
+                            viewBox="0 0 16 16"
+                            class="icon-home"
+                            fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg"
+                    >
+                    <path fill-rule="evenodd"
+                          transform="rotate(-90 8 8)"
+                          d="M7.27 2.047a1 1 0 0 1 1.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v3a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-3H1.654C.78 10.5.326 9.455.924 8.816L7.27 2.047z"></path>
+                </svg>
+                </span>
+                        На главную</a>
+                </div>
                 <div class="display-6 text-center">
                     Редактирование статьи
                 </div>
@@ -99,9 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isArticleExist === true) {
                             class="form-control" 
                             id="articleText" 
                             rows="10" 
-                        >
-                            <?= $articleData['text'] ?>
-                        </textarea>
+                        ><?= $articleData['text'] ?></textarea>
                     </div>
 
                     <div class="mb-3">
@@ -126,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isArticleExist === true) {
                     </div>
                     <p><?= $err ?></p>
                 </form>
-                <a href="index.php" class="btn btn-primary btn-sm">На главную</a>
+
             </div>
         </div>
     </div>
