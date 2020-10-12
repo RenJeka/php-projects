@@ -32,6 +32,7 @@ $articles = getAllArticles();
 
     .article-block{
         display: flex;
+        position: relative;
     }
 
     @media screen and (max-width: 600px){
