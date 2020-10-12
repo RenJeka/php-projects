@@ -41,7 +41,8 @@ function updateArticle(array $inputMaskParameters): bool{
             SET id_category=:id_category,
                 title=:title,
                 text=:text,
-                imageUrl=:imageUrl
+                imageUrl=:imageUrl,
+                editDate=:editDate
             WHERE id_article=:id_article";
     dbPrepareQuery($sql, $inputMaskParameters);
     return true;

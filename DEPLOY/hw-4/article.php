@@ -50,6 +50,11 @@ if ($isArticleExist) {
             display: inline-block;
         }
 
+        .edit-date {
+            font-size: 12px;
+            font-weight: lighter;
+        }
+
         @media screen and (max-width: 450px) {
             .btn-edit{
                 margin-bottom: 20px;
@@ -98,6 +103,9 @@ if ($isArticleExist) {
                 <div>
                     <pre class="p-2 border border-2 border-secondary rounded"><?= $article['text'] ?></pre>
                 </div>
+
+                <p class="edit-date"> Последнее изменение было <span
+                            class="edit-date"><?=$article['editDate']?></span></p>
                 <hr>
 
                 <div class="my-2">

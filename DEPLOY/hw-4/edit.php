@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isArticleExist === true) {
     $inputParameters['text'] = trim($_POST['text']);
     $inputParameters['imageUrl'] = trim($_POST['imageUrl']);
     $inputParameters['id_article'] = $_GET['id'];
+    $inputParameters['editDate'] = date("Y-m-d H:i:s");
 
     if (array_key_exists('id_category', $_POST)) {
         $inputParameters['id_category'] = trim($_POST['id_category']);
