@@ -10,9 +10,9 @@ $categories = getAllCategories();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $inputParameters = extractFieldsFromArray($_POST, ['title', 'text', 'imageUrl', 'id_category']);
-
     $validateErrors = articlesValidate($inputParameters);
     $inputParameters = articlesPrepareFields($inputParameters);
+
     if (empty($validateErrors)) {
         addNewArticle($inputParameters);
         $id = getLastInsertedID();
