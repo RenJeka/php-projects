@@ -1,35 +1,32 @@
 <?php
-include_once "model/db.php";
+include_once "core/db.php";
 include_once "model/articles.php";
 include_once "model/categories.php";
+include_once "core/arrayHelper.php";
 
-$inputParameters = [
-    'title' => '',
-    'id_category' => '',
-    'text' => ''
-];
-$err = '';
+$validateErrors = [];
 $categories = getAllCategories();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    $inputParameters = extractFieldsFromArray($_POST, ['title', 'text', 'imageUrl', 'id_category']);
 
-    $inputParameters['title'] = trim($_POST['title']);
-    $inputParameters['text'] = trim($_POST['text']);
-    $inputParameters['imageUrl'] = trim($_POST['imageUrl']);
-
-    if (array_key_exists('id_category', $_POST)) {
-        $inputParameters['id_category'] = trim($_POST['id_category']);
-    }
-
-    if ($inputParameters['title'] === '' || $inputParameters['text'] === '' || $inputParameters['id_category'] === '') {
-        $err = 'Заполните все поля!';
-    } else {
+    $validateErrors = articlesValidate($inputParameters);
+    $inputParameters = articlesPrepareFields($inputParameters);
+    if (empty($validateErrors)) {
         addNewArticle($inputParameters);
         $id = getLastInsertedID();
         header("Location: article.php?id=$id");
         exit();
     }
+
+} else {
+    $inputParameters = [
+        'title' => '',
+        'imageUrl' => '',
+        'id_category' => '',
+        'text' => ''
+    ];
 }
 
 include "views/v_add.php";

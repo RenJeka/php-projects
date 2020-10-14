@@ -1,5 +1,5 @@
 <?php
-include_once "model/db.php";
+include_once "core/db.php";
 
 /**
  * get all articles from DB
@@ -57,5 +57,39 @@ function deleteArticle(int $id_article): bool{
 function checkID(string $id): bool{
     $pattern = "/^[1-9]+\d*/";
     return (bool)preg_match($pattern, $id);
+}
+
+function articlesValidate(array $fields): array {
+    $articleErrors = [];
+    $titleLength = mb_strlen($fields['title'], 'UTF-8');
+
+    if ($fields['title'] === '') {
+        $articleErrors[] = 'Заполните заголовок статьи';
+    } else if ( $titleLength < 2 || $titleLength > 140){
+        $articleErrors[] = 'Название статьи должно быть от 2 до 140 символов!';
+    }
+
+    if ($fields['text'] === '') {
+        $articleErrors[] = 'Заполните текст статьи';
+    }
+
+    if ($fields['id_category'] === '') {
+        $articleErrors[] = 'Нужно выбрать категорию для статьи';
+    }
+
+    return $articleErrors;
+}
+
+/**
+ * Минимальная защита от XSS атак
+ * @param array $fields Массив со значениями полей ввода
+ * @return array Обработанный массив со значениями полей ввода для предотвращения XSS атак
+ */
+function articlesPrepareFields(array $fields) : array {
+    $fields["title"] = htmlspecialchars($fields["title"]);
+    $fields["text"] = htmlspecialchars($fields["text"]);
+    $fields["imageUrl"] = htmlspecialchars($fields["imageUrl"]);
+    $fields["id_category"] = htmlspecialchars($fields["id_category"]);
+    return $fields;
 }
 

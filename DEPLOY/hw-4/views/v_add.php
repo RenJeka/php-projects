@@ -34,6 +34,7 @@
                         class="form-control"
                         id="articleTitle"
                         aria-describedby="articleTitleHelp"
+                        value="<?=$inputParameters['title']?>"
                     >
                     <div id="articleTitleHelp" class="form-text">Введите сюда название своей статьи</div>
                 </div>
@@ -63,7 +64,7 @@
                         class="form-control"
                         id="articleText"
                         rows="10"
-                    > </textarea>
+                    > <?=$inputParameters['text']?></textarea>
                 </div>
 
                 <div class="mb-3">
@@ -74,6 +75,7 @@
                         class="form-control"
                         id="articleImageUrl"
                         aria-describedby="articleImgUrlHelp"
+                        value="<?=$inputParameters['imageUrl']?>"
                     >
                     <div id="articleImgUrlHelp" class="form-text">Просто правой кн. мыши на любой картинки в
                         интернете → и "Копировать URL"</div>
@@ -82,7 +84,9 @@
                 <div class="mb-3">
                     <button type="submit" class="btn btn-success btn-lg btn-block">Добавить статью</button>
                 </div>
-                <p><?= $err ?></p>
+                <? foreach ($validateErrors as $error ):?>
+                    <p><?=$error?></p>
+                <? endforeach;?>
             </form>
 
             <a href="index.php" class="btn btn-primary btn-sm">На главную</a>

@@ -22,6 +22,8 @@ if (checkID($_GET['id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $isArticleExist === true) {
+
+    // TODO: Перенести логику с add.php (валидация, устранение XSS атаки и.т.д., протестировать)
     $inputParameters['title'] = trim($_POST['title']);
     $inputParameters['text'] = trim($_POST['text']);
     $inputParameters['imageUrl'] = trim($_POST['imageUrl']);
