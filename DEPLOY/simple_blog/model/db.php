@@ -11,7 +11,8 @@ function getDBInstance(): PDO
     // Create singleton DB - connection
     static $db;
     if ($db === null) {
-        $db = new PDO('mysql:host=localhost;dbname=i972057g_tatiana', 'i972057g_tatiana', 'AG*gq8Cu', [
+        // $db = new PDO('mysql:host=localhost;dbname=i972057g_tatiana', 'i972057g_tatiana', 'AG*gq8Cu', [
+        $db = new PDO('mysql:host=localhost;dbname=test', 'root', '', [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);
         

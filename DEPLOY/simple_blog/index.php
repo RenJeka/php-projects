@@ -2,6 +2,9 @@
 
 include_once "model/articles.php";
 $articles = getAllArticles();
+echo "<pre>";
+print_r($articles);
+echo "<pre>";
 
 ?>
 
