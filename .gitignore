@@ -1,0 +1,14 @@
+# folders
+
+node_modules
+
+# files
+
+*.pdf
+*.rar
+*.zip
+*.exe
+#  *.jpg
+#  *.jpeg
+#  *.png
+#  *.gif
